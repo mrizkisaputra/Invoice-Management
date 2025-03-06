@@ -19,6 +19,7 @@ services:
 
 volumes:
   invoicedb-data:
+    external: false
 
 networks:
   invoice-management:
