@@ -29,3 +29,7 @@ Daftar framework & library apa saja yang digunakan:
 * Postgresql Driver (java program to connect to a postgresql database)
 * Lombok (java annotation library for reduce boilerplate code)
 * Spring Validation
+
+## Schema Database Relational
+
+![schema db](./skema_invoicedb.png)
