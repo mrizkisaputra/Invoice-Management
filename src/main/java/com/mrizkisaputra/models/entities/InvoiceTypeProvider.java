@@ -1,4 +1,4 @@
-package com.mrizkisaputra.entities;
+package com.mrizkisaputra.models.entities;
 
 import jakarta.persistence.Entity;
 import lombok.Data;

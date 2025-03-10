@@ -1,4 +1,4 @@
-package com.mrizkisaputra.entities;
+package com.mrizkisaputra.models.entities;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotEmpty;
@@ -23,7 +23,6 @@ public class InvoiceType extends BaseEntity {
     @NotNull @NotEmpty @Size(min = 3, max = 100)
     private String name;
 
-    @NotNull
     @OneToMany(mappedBy = "invoiceType")
     private List<Invoice> invoice;
 
