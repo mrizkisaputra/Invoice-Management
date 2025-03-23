@@ -22,6 +22,10 @@ import java.util.List;
 @Where(clause = "status_record='ACTIVE'")
 public class Invoice extends BaseEntity {
 
+    @ManyToOne
+    @JoinColumn(name = "id_customer", referencedColumnName = "id")
+    private Customer customer;
+
     @NotNull
     @ManyToOne
     @JoinColumn(name = "id_invoice_type", referencedColumnName = "id")
