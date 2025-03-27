@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout.html}">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Edit Customer</title>
+</head>
+<body>
+mvn spring-b
+    <section layout:fragment="content">
+        <!-- Page Heading -->
+        <div class="d-sm-flex align-items-center justify-content-between mb-4">
+            <h1 class="h3 mb-0 text-gray-800">Edit Customer</h1>
+        </div>
+
+        <form method="post" th:object="${customer}" th:action="@{/customer/form}" enctype="application/x-www-form-urlencoded">
+            <input type="hidden" th:field="*{id}">
+            <div class="mb-3">
+                <label for="codeInput" class="form-label">Code</label>
+                <input type="text" th:field="*{code}" th:errorclass="is-invalid" class="form-control" id="codeInput">
+                <div
+                        th:if="${#fields.hasErrors('code')}"
+                        th:errors="*{code}"
+                        class="invalid-feedback">
+                </div>
+            </div>
+            <div class="mb-3">
+                <label for="nameInput" class="form-label">Name</label>
+                <input type="text" class="form-control" id="nameInput" th:field="*{name}" th:errorclass="is-invalid">
+                <div
+                        th:if="${#fields.hasErrors('name')}"
+                        th:errors="*{name}"
+                        class="invalid-feedback">
+                </div>
+            </div>
+            <div class="mb-3">
+                <label for="emailInput" class="form-label">Email</label>
+                <input type="email" class="form-control" id="emailInput" name="email" th:field="*{email}" th:errorclass="is-invalid">
+                <div
+                        th:if="${#fields.hasErrors('email')}"
+                        th:errors="*{email}"
+                        class="invalid-feedback">
+                </div>
+            </div>
+            <div class="mb-3">
+                <label for="mobilePhoneInput" class="form-label">Mobile Phone</label>
+                <input type="text" class="form-control" id="mobilePhoneInput" th:field="*{mobilePhone}" th:errorclass="is-invalid">
+                <div
+                        th:if="${#fields.hasErrors('mobilePhone')}"
+                        th:errors="*{mobilePhone}"
+                        class="invalid-feedback">
+                </div>
+            </div>
+            <button type="submit" class="btn btn-primary">Save</button>
+        </form>
+    </section>
+
+</body>
+</html>

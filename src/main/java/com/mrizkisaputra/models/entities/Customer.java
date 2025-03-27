@@ -21,10 +21,14 @@ public class Customer extends BaseEntity {
     @OneToMany(mappedBy = "customer")
     private List<Invoice> invoice;
 
-    @NotNull @NotEmpty @Size(max = 100)
+    @NotNull
+    @NotEmpty(message = "{customer.code.notempty}")
+    @Size(max = 100, message = "{customer.code.size}")
     private String code;
 
-    @NotNull @NotEmpty @Size(max = 255)
+    @NotNull
+    @NotEmpty(message = "{customer.name.notempty}")
+    @Size(max = 255)
     private String name;
 
     @NotNull @NotEmpty @Size(max = 100) @Email
