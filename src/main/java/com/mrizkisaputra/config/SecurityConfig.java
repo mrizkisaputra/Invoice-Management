@@ -18,7 +18,6 @@ import javax.sql.DataSource;
 
 @Configuration
 @EnableWebSecurity
-@EnableMethodSecurity
 public class SecurityConfig {
 
     private final DataSource datasource;
@@ -44,10 +43,15 @@ public class SecurityConfig {
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
-                .authorizeHttpRequests(configurer -> configurer
-                        .requestMatchers("/register", "/login").permitAll()
-                        .anyRequest().fullyAuthenticated()
-                )
+                .authorizeHttpRequests(configurer -> {
+                    configurer
+                            .requestMatchers("/register/**").permitAll() // izinkan akses view registrasi
+                            .requestMatchers("/password/**").permitAll()
+                            .requestMatchers("/login").permitAll()
+                            .requestMatchers("/assets/**").permitAll() // izinkan akses ke static assets
+                            .requestMatchers("/", "/home").hasAnyAuthority("VIEW_TRANSAKSI", "EDIT_TRANSAKSI") // izinkan akses hanya yang memiliki permission
+                            .anyRequest().authenticated(); // semua request lain harus login
+                })
                 .formLogin(Customizer.withDefaults())
                 .logout(Customizer.withDefaults());
 

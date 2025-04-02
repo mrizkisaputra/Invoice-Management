@@ -7,7 +7,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 @Controller
 public class HomeWebController {
 
-    @PreAuthorize("hasAnyAuthority('VIEW_TRANSAKSI', 'EDIT_TRANSAKSI')")
     @GetMapping(path = {"/", "/home"})
     public String home() {
         return "home";

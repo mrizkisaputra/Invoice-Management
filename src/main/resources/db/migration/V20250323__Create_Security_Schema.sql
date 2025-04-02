@@ -1,6 +1,7 @@
-CREATE TABLE s_roles(
-                        id varchar(100) not null,
-                        name varchar(100) not null
+CREATE TABLE s_roles
+(
+    id   varchar(100) not null,
+    name varchar(100) not null
 );
 
 ALTER TABLE s_roles
@@ -13,10 +14,10 @@ ALTER TABLE s_roles
 -- =====================================================================================================================
 CREATE TABLE s_users
 (
-    id varchar(100) not null,
-    id_role varchar(100) not null,
+    id       varchar(100) not null,
+    id_role  varchar(100) not null,
     username varchar(100) not null,
-    active boolean not null
+    active   boolean      not null
 );
 
 ALTER TABLE s_users
@@ -30,10 +31,30 @@ ALTER TABLE s_users
 
 --
 -- =====================================================================================================================
+CREATE TABLE s_reset_password
+(
+    id varchar(100) not null,
+    generated timestamp not null,
+    expired timestamp not null,
+    unique_code varchar(100) not null,
+    id_user varchar(100) not null
+);
+
+ALTER TABLE s_reset_password
+    ADD CONSTRAINT pkey_id__s_reset_ppassword PRIMARY KEY (id);
+
+ALTER TABLE s_reset_password
+    ADD CONSTRAINT unique_unique_code__s_reset_password UNIQUE (unique_code);
+
+ALTER TABLE s_reset_password
+    ADD CONSTRAINT fk_id_user__s_reset_password FOREIGN KEY (id_user) REFERENCES s_users (id);
+
+--
+-- =====================================================================================================================
 CREATE TABLE s_password
 (
     password varchar(255) not null,
-    id_user varchar(100) not null
+    id_user  varchar(100) not null
 );
 
 ALTER TABLE s_password
@@ -46,7 +67,7 @@ ALTER TABLE s_password
 -- =====================================================================================================================
 CREATE TABLE s_permissions
 (
-    id varchar(100) not null,
+    id    varchar(100) not null,
     label varchar(100) not null,
     value varchar(100) not null
 );
@@ -61,7 +82,7 @@ ALTER TABLE s_permissions
 -- =====================================================================================================================
 CREATE TABLE s_roles_permissions
 (
-    id_role varchar(100),
+    id_role       varchar(100),
     id_permission varchar(100)
 );
 
